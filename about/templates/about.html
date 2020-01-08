@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
+<section class="destination" id="about" name="about"></section>
+<div class="container">
+    <h2>About Us</h2>
+    <div class="jumbotron">
+        {% with about|first as about %}
+            <h3> {{ about.text|safe|linebreaks }} </h3>
+        {% endwith%}
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
+<section class="destination" id="welcome" name="welcome"></section>
+{% comment %} <h2>Home</h2> {% endcomment %}
+<div class="container">
+    <div class="jumbotron">
+        {% with welcome|first as welcome %}
+            <h3> {{ welcome.text|safe|linebreaks }} </h3>
+        {% endwith%}
+    </div>
+    <hr>
+</div>
+
+<section class="destination" id="testimonials" name="testimonials"></section>
+
+<div class="container">
+    <h2>Real Customers, Real Reviews</h2>
+    <div class="jumbotron">
+        {% with welcome|first as welcome %}
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="5000">
+        <ol class="carousel-indicators">
+            {% for t in welcome.testimonial_set.all %}
+                {% if forloop.first %}
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                {% else %}
+                    <li data-target="#carouselExampleIndicators" data-slide-to="forloop.counter"></li>
+                {% endif %}
+            {% endfor %}
+        </ol>
+        <div class="carousel-inner">
+            {% for t in welcome.testimonial_set.all %}
+                {% if forloop.first %}
+                    <div class="carousel-item active">
+                {% else %}
+                    <div class="carousel-item">
+                {% endif %}
+                    <blockquote class="blockquote">
+                        <p>{{ t.text }}</p>
+                        <footer class="blockquote-footer">{{ t.name }}</footer>
+                    </blockquote>
+                </div>
+            {% endfor %}
+        </div>
+        </div>
+        {% endwith %}
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,6 @@
+.vscode
+*/__pycache__/*
+*/migrations/*
+*/__init__.py
+venv
+sta-config.json

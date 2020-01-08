@@ -1,0 +1,155 @@
+{% load static %}
+
+<head>
+  <meta charset="utf-8">
+  <meta name="Viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>Local STA Testing Site</title>
+  <meta name="Description" content="Senior Technology Associates LLC Business Website">
+
+  <link rel="shortcut icon" href="{% static 'images/icon.png' %}">
+  <link rel="apple-touch-icon" href="{% static 'images/icon.png' %}" />
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://bootswatch.com/4/simplex/bootstrap.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+</head>
+
+<body>
+
+<header>
+
+{% comment %} Navbar {% endcomment %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+  
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="{% url 'home_index' %}"><img src="{% static 'images/STA White.png' %}"></a>
+    
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" style="padding-right: 10px" href="{% url 'home_index' %}"> <h2> Home </h2> </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="padding-right: 10px" href="{% url 'about_index' %}"> <h2> About </h2> </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="padding-right: 10px" href="{% url 'contact_index' %}"> <h2> Contact </h2> </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="padding-right: 10px" href="{% url 'news_index' %}"> <h2> News </h2></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="padding-right: 10px" href="{% url 'blog_index' %}"> <h2> Blog </h2></a>
+        </li>
+      </ul>
+      {% comment %} Start search bar {% endcomment %}
+      <form class="form-inline my-2 my-lg-0" action="{% url 'news_index' %}" method="get">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
+        <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+
+  </div>
+</nav>
+
+<img src="{% static 'images/mountains_banner.jpg' %}" class="img-fluid" style="max-height: 300px">
+
+</header>
+
+<br>
+{% comment %} Messages {% endcomment %}
+<div class="container-fluid">
+  {% include 'messages.html' %}
+  {% block content %}
+  {% endblock %}
+</div>
+
+<div class="container-fluid">
+  <div class="pl-4 pr-5 row">
+    {% comment %} Start Quick Link Cards {% endcomment %}
+    <div class="col-md-2">
+      <div class="sticky-top">
+        <br>
+        <div class="card border-primary md-2">
+          <h4 class="card-header">Quick Links</h4>
+          <div class="card-body">
+            <span class="text-nowrap">
+              <p class="card-text">
+                <a href="https://www.cnet.com/"><font color=#c13434>CNET</font></a> <br>
+                <a href="https://www.techcrunch.com/"><font color=#c13434>TechCrunch</font></a> <br>
+                <a href="https://www.theverge.com/"><font color=#c13434>The Verge</font></a> <br>
+                <a href="https://www.techradar.com/"><font color=#c13434>TechRadar</font></a> <br>
+                <a href="https://www.wired.com/"><font color=#c13434>Wired</font></a> <br>
+                <a href="https://www.engadget.com/"><font color=#c13434>Engadget</font></a> <br>
+              </p>
+            </span>
+          </div>
+        </div>
+        <br>
+      </div>
+    </div>
+
+    {% comment %} Start Page Content {% endcomment %}
+    <div class="col-md-8">
+      <br>
+      {% block page_content %} {% endblock%}
+    </div>
+
+    {% comment %} Start Contact Cards {% endcomment %}
+    <div class="col-md-2">
+      <div class="sticky-top">
+        <br>
+        <div class="card border-primary md-2">
+          <span class="text-nowrap">
+            <h3 class="card-header"><a href="{% url 'contact_index' %}">Contact</a></h3>
+          </span>
+        </div>
+        <br>
+        {% comment %} Don Haback {% endcomment %}
+        <div class="card border-primary md-2 d-none d-lg-block">  
+          <img class="mx-auto" style="width: 75%; display: block;" src="{% static 'images/don.jpg' %}">
+          <div class="card-body">
+            <h5 class="card-title">Don Haback, President &amp; Founder</h5>
+            <p class="card-text">
+              <a href="mailto:donhaback@seniortechnologyllc.com" class="mail"><font color=#c13434>don@seniortechnologyllc.com</font></a> <br>
+              <a href="tel:9088398885" class="tel"><font color=#c13434>(908) 839-8885</font></a>
+            </p>
+          </div>
+        </div>
+        
+        <br>
+        
+        {% comment %} Dave Mancuso {% endcomment %}
+        <div class="card border-primary md-2 d-none d-lg-block">
+          <img class="mx-auto" style="width: 75%; display: block;" src="{% static 'images/dave.jpeg' %}">
+          <div class="card-body">
+            <h5 class="card-title">Dave Mancuso, Software Developer</h5>
+            <p class="card-text">
+              <a href="mailto:davemancuso@seniortechnologyllc.com" class="mail"><font color=#c13434>dave@seniortechnologyllc.com</font></a> <br>
+              <a href="tel:7322390310" class="tel"><font color=#c13434>(732) 239-0310</font></a>
+            </p>
+          </div>
+        </div>
+        <br>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+<!-- Custom js code for changing active tab -->
+<script>
+$(document).ready(function() {
+  $('li.active').removeClass('active');
+  $('a[href="' + location.pathname + '"]').closest('li').addClass('active');
+});
+</script>
