@@ -1,6 +1,6 @@
 certifi==2019.11.28
 chardet==3.0.4
-Django==2.2.1
+Django==2.2.8
 django-widget-tweaks==1.4.5
 idna==2.8
 newsapi-python==0.2.6
