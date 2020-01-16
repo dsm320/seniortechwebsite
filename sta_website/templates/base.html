@@ -7,11 +7,20 @@
   <title>Local STA Testing Site</title>
   <meta name="Description" content="Senior Technology Associates LLC Business Website">
 
-  <link rel="shortcut icon" href="{% static 'images/icon.png' %}">
-  <link rel="apple-touch-icon" href="{% static 'images/icon.png' %}" />
+  <link rel="shortcut icon" href="{% static 'images/STA Black.svg' %}">
+  <link rel="apple-touch-icon" href="{% static 'images/STA Black.svg' %}" />
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://bootswatch.com/4/simplex/bootstrap.min.css" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+  <!-- Custom CSS -->
+  <style>
+    .vl {
+      border-left: 1px solid gray;
+      height: 150px;
+    }
+  </style>
+
 </head>
 
 <body>
@@ -63,8 +72,6 @@
 {% comment %} Messages {% endcomment %}
 <div class="container-fluid">
   {% include 'messages.html' %}
-  {% block content %}
-  {% endblock %}
 </div>
 
 <div class="container-fluid">
@@ -89,14 +96,39 @@
           </div>
         </div>
         <br>
+
+        {% comment %} Recent Posts {% endcomment %}
+        <div class="card border-primary md-2 d-none d-lg-block">
+          <h4 class="card-header"><a href="{% url 'blog_index' %}">Recent Posts</a></h4>
+          <div class="card-body">
+            {% for recent_post in recent_posts %}
+              <h2><a href="{% url 'blog_detail' recent_post.pk%}">{{ recent_post.title }}</a></h2>
+              <small>
+                  {{ recent_post.created_on.date }} |&nbsp;
+                  Categories:&nbsp;
+                  {% for category in recent_post.categories.all %}
+                  <a href="{% url 'blog_category' category.name %}">
+                      {{ category.name }}
+                  </a>&nbsp;
+                  {% endfor %}
+              </small>
+              {% if not forloop.last %}
+                <hr>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+
       </div>
     </div>
+
 
     {% comment %} Start Page Content {% endcomment %}
     <div class="col-md-8">
       <br>
       {% block page_content %} {% endblock%}
     </div>
+
 
     {% comment %} Start Contact Cards {% endcomment %}
     <div class="col-md-2 d-none d-lg-block">
@@ -108,32 +140,21 @@
           </span>
         </div>
         <br>
-        {% comment %} Don Haback {% endcomment %}
-        <div class="card border-primary md-2">  
-          <img class="mx-auto" style="width: 75%; display: block;" src="{% static 'images/don.jpg' %}">
-          <div class="card-body">
-            <h5 class="card-title">Don Haback, President &amp; Founder</h5>
-            <p class="card-text">
-              <a href="mailto:donhaback@seniortechnologyllc.com" class="mail"><font color=#c13434>don@seniortechnologyllc.com</font></a> <br>
-              <a href="tel:9088398885" class="tel"><font color=#c13434>(908) 839-8885</font></a>
-            </p>
+
+        {% for bio in bios %}
+          <div class="card border-primary md-2">  
+            <img class="mx-auto" style="width: 75%; display: block;" src="{{ bio.image.url }}">
+            <div class="card-body">
+              <h5 class="card-title">{{bio.name}}, {{bio.title}}</h5>
+              <p class="card-text">
+                <a href="mailto:{{bio.email}}" class="mail"><font color=#c13434>{{bio.email}}</font></a> <br>
+                <a href="tel:{{bio.phone}}" class="tel"><font color=#c13434>{{bio.phone}}</font></a>
+              </p>
+            </div>
           </div>
-        </div>
+          <br>
+        {% endfor %}
         
-        <br>
-        
-        {% comment %} Dave Mancuso {% endcomment %}
-        <div class="card border-primary md-2">
-          <img class="mx-auto" style="width: 75%; display: block;" src="{% static 'images/dave.jpeg' %}">
-          <div class="card-body">
-            <h5 class="card-title">Dave Mancuso, Software Developer</h5>
-            <p class="card-text">
-              <a href="mailto:davemancuso@seniortechnologyllc.com" class="mail"><font color=#c13434>dave@seniortechnologyllc.com</font></a> <br>
-              <a href="tel:7322390310" class="tel"><font color=#c13434>(732) 239-0310</font></a>
-            </p>
-          </div>
-        </div>
-        <br>
       </div>
     </div>
 

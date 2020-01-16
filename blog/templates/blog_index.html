@@ -16,7 +16,9 @@
         {% endfor %}
     </small>
     <p>{{ post.body|safe | slice:":150"}}...</p>
-    <hr>
+    {% if not forloop.last %}
+        <hr>
+    {% endif %}
     {% endfor %}
 </div>
 {% endblock %}

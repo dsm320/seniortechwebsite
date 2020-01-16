@@ -6,9 +6,30 @@
 <div class="container">
     <h2>About Us</h2>
     <div class="jumbotron">
-        {% with about|first as about %}
-            <h3> {{ about.text|safe|linebreaks }} </h3>
-        {% endwith%}
+      {% with about|first as about %}
+        <h3> {{ about.text|safe|linebreaks }} </h3>
+      {% endwith%}
+    </div>
+    
+    <h2>Meet the Team</h2>
+    <div class="jumbotron">
+      {% for bio in bios %}
+        <div class="row">
+          <div class="col-lg-2">
+            <img src="{{ bio.image.url }}" style="border-radius: 50%; width: 125px;">
+          </div>
+          <div class="vl d-none d-lg-block"></div>
+          <div class="d-lg-none"></div>
+          <div class="col-lg-8">
+            <h3> {{ bio.name }}, {{ bio.title }} </h3>
+            <p> {{ bio.bio }} </p>
+            <small> <a href="mailto:{{ bio.email }}" class="mail"><font color=#c13434>{{ bio.email }}</font></a> <br> <a href="tel:{{ bio.phone }}" class="tel"><font color=#c13434>{{ bio.phone }}</font></a> </small>
+          </div>
+        </div>
+        {% if not forloop.last %}
+          <hr>
+        {% endif %}
+      {% endfor %}
     </div>
 </div>
 

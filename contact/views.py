@@ -9,6 +9,8 @@ from django.utils.html import strip_tags
 from sendgrid_backend.mail import SendgridBackend
 
 from contact.forms import ContactForm
+from blog.models import Post
+from about.models import Biography
 
 # Create your views here.
 
@@ -48,4 +50,7 @@ def contact_index(request):
 
     messages.info(request, 'Please pardon our appearance, this page is under construction.')
     
-    return render(request, "contact_index.html", {'form': form})
+    recent_posts = Post.objects.all().order_by('-created_on')[:3]
+    bios = Biography.objects.all()
+
+    return render(request, "contact_index.html", {'form': form, 'recent_posts': recent_posts, 'bios': bios,})

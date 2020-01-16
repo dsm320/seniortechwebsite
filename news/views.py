@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.contrib import messages
 
+from blog.models import Post
+from about.models import Biography
+
 from datetime import datetime
 from dateutil import tz
 
@@ -44,7 +47,9 @@ def news_index(request):
         date.append(fdate)
     articles = zip(news, author, desc, img, url, date)
 
+    recent_posts = Post.objects.all().order_by('-created_on')[:3]
+    bios = Biography.objects.all()
 
     messages.info(request, 'Please pardon our appearance, this page is under construction.')
 
-    return render(request, 'news_index.html', context ={'articles': articles, 'title': title})
+    return render(request, 'news_index.html', context ={'articles': articles, 'title': title, 'recent_posts': recent_posts, 'bios': bios,})

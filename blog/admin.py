@@ -7,7 +7,7 @@ class CommentInline(admin.TabularInline):
     model = Comment
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'created_on', 'last_modified' )
+    list_display = ('title', 'created_on', 'last_modified')
     inlines = [
         CommentInline,
     ]

@@ -22,4 +22,4 @@ class TestimonialAdmin(admin.ModelAdmin):
         return (obj.text[:50] + '...')
 
 admin.site.register(Welcome, WelcomeAdmin)
-admin.site.register(Testimonial, TestimonialAdmin)
+# admin.site.register(Testimonial, TestimonialAdmin)

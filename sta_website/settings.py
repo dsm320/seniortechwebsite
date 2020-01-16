@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'blog',
 
     'widget_tweaks',
+    'phonenumber_field',
 ]
 
 MIDDLEWARE = [
@@ -131,7 +132,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "sta_website/static"),]
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Sendgrid API Key - SG.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
@@ -139,13 +143,6 @@ EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
 SENDGRID_API_KEY = config['SENDGRID_KEY']
 
 SENDGRID_SANDBOX_MODE_IN_DEBUG = False
-
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.sendgrid.net'
-# EMAIL_HOST_USER = 'apikey'
-# EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
-# EMAIL_USE_TLS = True
-# EMAIL_PORT = 587
 
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-info',
