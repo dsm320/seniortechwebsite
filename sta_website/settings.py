@@ -140,7 +140,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Sendgrid API Key - SG.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
-SENDGRID_API_KEY = config['SENDGRID_KEY']
+SENDGRID_API_KEY = config['SENDGRID_API_KEY']
 
 SENDGRID_SANDBOX_MODE_IN_DEBUG = False
 

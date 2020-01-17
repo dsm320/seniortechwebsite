@@ -1,3 +1,5 @@
+import json
+
 from django.shortcuts import render
 from django.contrib import messages
 
@@ -10,10 +12,13 @@ from dateutil import tz
 from newsapi import NewsApiClient
 
 # Create your views here.
-# News API key - 4a168c464f74480aa143afd5ce73b476
+# News API key - 4a*********************
+
+with open('sta-config.json') as config_file:
+        config = json.load(config_file)
 
 def news_index(request):
-    newsapi = NewsApiClient(api_key='4a168c464f74480aa143afd5ce73b476')
+    newsapi = NewsApiClient(api_key=config['NEWS_API_KEY'])
     local_time = tz.tzlocal()
 
     title = 'Top Tech Headlines'
