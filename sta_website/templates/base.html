@@ -76,11 +76,11 @@
 
 <div class="container-fluid">
   <div class="pl-4 pr-5 row">
-    {% comment %} Start Quick Link Cards {% endcomment %}
     <div class="col-md-2">
       <div class="sticky-top">
         <br>
-        <div class="card border-primary md-2">
+        {% comment %} Start Quick Link Cards {% endcomment %}
+        <div class="card border-primary md-2 d-none d-md-block">
           <h4 class="card-header">Quick Links</h4>
           <div class="card-body">
             <span class="text-nowrap">
@@ -131,10 +131,10 @@
 
 
     {% comment %} Start Contact Cards {% endcomment %}
-    <div class="col-md-2 d-none d-lg-block">
+    <div class="col-md-2">
       <div class="sticky-top">
         <br>
-        <div class="card border-primary md-2">
+        <div class="card border-primary md-2 d-none d-lg-block">
           <span class="text-nowrap">
             <h3 class="card-header"><a href="{% url 'contact_index' %}">Contact</a></h3>
           </span>
@@ -142,7 +142,7 @@
         <br>
 
         {% for bio in bios %}
-          <div class="card border-primary md-2">  
+          <div class="card border-primary md-2 d-none d-lg-block">  
             <img class="mx-auto" style="width: 75%; display: block;" src="{{ bio.image.url }}">
             <div class="card-body">
               <h5 class="card-title">{{bio.name}}, {{bio.title}}</h5>
@@ -152,8 +152,29 @@
               </p>
             </div>
           </div>
-          <br>
+          {% if not forloop.last %}
+            <br>
+          {% endif %}
         {% endfor %}
+
+        {% comment %} Quick Link Cards for Mobile {% endcomment %}
+        <div class="card border-primary md-2 d-block d-sm-none">
+          <h4 class="card-header">Quick Links</h4>
+          <div class="card-body">
+            <span class="text-nowrap">
+              <p class="card-text">
+                <a href="https://www.cnet.com/"><font color=#c13434>CNET</font></a> <br>
+                <a href="https://www.techcrunch.com/"><font color=#c13434>TechCrunch</font></a> <br>
+                <a href="https://www.theverge.com/"><font color=#c13434>The Verge</font></a> <br>
+                <a href="https://www.techradar.com/"><font color=#c13434>TechRadar</font></a> <br>
+                <a href="https://www.wired.com/"><font color=#c13434>Wired</font></a> <br>
+                <a href="https://www.engadget.com/"><font color=#c13434>Engadget</font></a> <br>
+              </p>
+            </span>
+          </div>
+        </div>
+
+        <br>
         
       </div>
     </div>
