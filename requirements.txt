@@ -9,7 +9,7 @@ future==0.18.2
 idna==2.8
 newsapi-python==0.2.6
 phonenumbers==8.11.1
-Pillow==7.0.0
+Pillow==9.0.1
 pkg-resources==0.0.0
 python-dateutil==2.8.1
 python-http-client==3.2.1
